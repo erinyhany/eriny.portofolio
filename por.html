@@ -474,10 +474,13 @@
         }
 
         .education-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: var(--border-radius);
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--card-bg);
             box-shadow: var(--shadow-lg);
+            transition: border-color 0.3s ease;
         }
 
         /* ===== SKILLS SECTION ===== */
@@ -1216,5 +1219,6 @@
     </script>
 </body>
 </html>
+
 
 
