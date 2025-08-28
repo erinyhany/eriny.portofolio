@@ -290,10 +290,11 @@
         }
 
         .hero-image {
-            flex: 1;
-            text-align: center;
-            position: relative;
-        }
+           flex: 1;
+           text-align: center;
+           position: relative;
+           padding-left: 50px; /* Adds space between the text and the image */
+       }
 
         .hero-image img {
             width: 350px;
@@ -347,9 +348,27 @@
 
         .education-container {
             display: flex;
-            align-items:center;
+            align-items: center;
             gap: 50px;
-        }
+       }
+
+      .education-text {
+          flex: 1;
+          padding-right: 50px; /* Adds space to the right of the text block */
+       }
+
+        .education-image {
+             flex: 1;
+            text-align: center;
+            padding-left: 20px; /* Adds a bit more space to the left of the image */
+       }
+
+       .education-image img {
+           width: 100%;
+           max-width: 400px;
+           border-radius: var(--border-radius);
+           box-shadow: var(--shadow-lg);
+       }
 
         .education-text {
             flex: 1;
@@ -1150,4 +1169,5 @@
         window.addEventListener('load', animateOnScroll);
     </script>
 </body>
+
 </html>
