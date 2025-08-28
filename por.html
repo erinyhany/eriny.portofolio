@@ -28,6 +28,41 @@
             --shadow-lg: 0 15px 30px rgba(138, 79, 255, 0.2);
             --transition: all 0.3s ease;
             --border-radius: 12px;
+            
+            /* Text colors */
+            --text-primary: var(--dark);
+            --text-secondary: var(--gray-dark);
+            
+            /* Background colors */
+            --bg-primary: var(--light);
+            --bg-secondary: white;
+            
+            /* Additional variables for dark mode toggle */
+            --theme-toggle-bg: var(--gray-light);
+            --theme-toggle-icon: '\f186'; /* moon icon for light mode */
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary: #9E6CFF;
+            --primary-dark: #8A4FFF;
+            --primary-light: #B18AFF;
+            --light: #2D2B3A;
+            --dark: #FAF7FF;
+            --dark-bg: #23222E;
+            --gray: #6D6B80;
+            --gray-light: #3A3751;
+            --gray-dark: #8C8A9E;
+            --card-bg: #3A3751;
+            --section-bg: #2D2B3A;
+            --text-primary: #FAF7FF;
+            --text-secondary: #8C8A9E;
+            --bg-primary: #23222E;
+            --bg-secondary: #3A3751;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.4);
+            --theme-toggle-bg: var(--primary);
+            --theme-toggle-icon: '\f185'; /* sun icon for dark mode */
         }
 
         * {
@@ -43,9 +78,10 @@
         body {
             font-family: var(--font-main);
             line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -57,13 +93,16 @@
 
         section {
             padding: 80px 0;
+            background-color: var(--section-bg);
+            transition: background-color 0.3s ease;
         }
 
         h1, h2, h3, h4 {
             margin-bottom: 0.5rem;
             font-weight: 700;
             line-height: 1.2;
-            color: var(--dark);
+            color: var(--text-primary);
+            transition: color 0.3s ease;
         }
 
         h1 {
@@ -80,6 +119,8 @@
 
         p {
             margin-bottom: 1rem;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
         }
 
         a {
@@ -110,7 +151,7 @@
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .section-title::after {
@@ -162,9 +203,10 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(var(--bg-primary-rgb), 0.95);
             box-shadow: 0 2px 10px rgba(138, 79, 255, 0.1);
             backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
         }
 
         .navbar {
@@ -177,7 +219,8 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--text-primary);
+            transition: color 0.3s ease;
         }
 
         .logo span {
@@ -187,6 +230,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links li {
@@ -194,9 +238,10 @@
         }
 
         .nav-links a {
-            color: var(--dark);
+            color: var(--text-primary);
             font-weight: 600;
             position: relative;
+            transition: color 0.3s ease;
         }
 
         .nav-links a::after {
@@ -218,13 +263,40 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark);
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: var(--theme-toggle-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 20px;
+        }
+
+        .theme-toggle::before {
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            content: var(--theme-toggle-icon);
+            color: var(--text-primary);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
         /* ===== HERO SECTION ===== */
         #hero {
             padding-top: 150px;
-            background: linear-gradient(135deg, #f9f5ff 0%, #f0e6ff 100%);
+            background: linear-gradient(135deg, var(--section-bg) 0%, var(--gray-light) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -270,7 +342,7 @@
         .hero-title {
             font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .hero-title span {
@@ -302,8 +374,9 @@
             height: 350px;
             object-fit: cover;
             border-radius: 50%;
-            border: 5px solid white;
+            border: 5px solid var(--card-bg);
             box-shadow: var(--shadow-lg);
+            transition: border-color 0.3s ease;
         }
 
         .floating {
@@ -318,7 +391,7 @@
 
         /* ===== ABOUT SECTION ===== */
         #about {
-            background-color: white;
+            background-color: var(--bg-secondary);
         }
 
         .about-content {
@@ -334,7 +407,7 @@
         .about-text p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
-            color: var(--dark);
+            color: var(--text-secondary);
         }
 
         .about-text b {
@@ -344,7 +417,7 @@
 
         /* ===== EDUCATION SECTION ===== */
         #education {
-            background: linear-gradient(135deg, #f9f5ff 0%, #f0e6ff 100%);
+            background: linear-gradient(135deg, var(--section-bg) 0%, var(--gray-light) 100%);
         }
 
         .education-container {
@@ -358,12 +431,13 @@
         }
 
         .education-item {
-            background: white;
+            background: var(--card-bg);
             padding: 30px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             margin-bottom: 20px;
             border-left: 4px solid var(--primary);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .education-header {
@@ -389,8 +463,9 @@
 
         .education-institution {
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-primary);
             margin-bottom: 10px;
+            transition: color 0.3s ease;
         }
 
         .education-image {
@@ -407,7 +482,7 @@
 
         /* ===== SKILLS SECTION ===== */
         #skills {
-            background-color: white;
+            background-color: var(--bg-secondary);
         }
 
         .skills-grid {
@@ -417,7 +492,7 @@
         }
 
         .skill-item {
-            background: white;
+            background: var(--card-bg);
             padding: 30px 20px;
             border-radius: var(--border-radius);
             text-align: center;
@@ -440,16 +515,16 @@
         .skill-item h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .skill-item p {
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         /* ===== PROJECTS SECTION ===== */
         #projects {
-            background: linear-gradient(135deg, #f9f5ff 0%, #f0e6ff 100%);
+            background: linear-gradient(135deg, var(--section-bg) 0%, var(--gray-light) 100%);
         }
 
         .projects-grid {
@@ -459,7 +534,7 @@
         }
 
         .project-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -494,11 +569,11 @@
         .project-title {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .project-description {
-            color: var(--gray);
+            color: var(--text-secondary);
             margin-bottom: 20px;
         }
 
@@ -511,11 +586,12 @@
 
         .tech-tag {
             background: var(--gray-light);
-            color: var(--dark);
+            color: var(--text-primary);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .project-links {
@@ -525,7 +601,7 @@
 
         /* ===== CONTACT SECTION ===== */
         #contact {
-            background-color: white;
+            background-color: var(--bg-secondary);
         }
 
         .contact-container {
@@ -536,7 +612,7 @@
 
         .contact-info {
             padding: 30px;
-            background: linear-gradient(135deg, #f9f5ff 0%, #f0e6ff 100%);
+            background: linear-gradient(135deg, var(--section-bg) 0%, var(--gray-light) 100%);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
         }
@@ -551,9 +627,10 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid white;
+            border: 5px solid var(--card-bg);
             box-shadow: var(--shadow);
             margin: 0 auto;
+            transition: border-color 0.3s ease;
         }
 
         .contact-item {
@@ -577,11 +654,11 @@
 
         .contact-text h4 {
             font-size: 1.1rem;
-            color: var(--dark);
+            color: var(--text-primary);
         }
 
         .contact-text a, .contact-text p {
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         .contact-social {
@@ -609,9 +686,10 @@
 
         .contact-form {
             padding: 30px;
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            transition: background-color 0.3s ease;
         }
 
         .form-group {
@@ -622,7 +700,8 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text-primary);
+            transition: color 0.3s ease;
         }
 
         .form-control {
@@ -633,6 +712,8 @@
             font-family: var(--font-main);
             font-size: 1rem;
             transition: var(--transition);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
         }
 
         .form-control:focus {
@@ -648,10 +729,11 @@
 
         /* ===== FOOTER ===== */
         footer {
-            background: var(--dark);
+            background: var(--dark-bg);
             color: white;
             padding: 30px 0;
             text-align: center;
+            transition: background-color 0.3s ease;
         }
 
         .copyright {
@@ -695,7 +777,7 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 80px);
-                background: white;
+                background: var(--card-bg);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
@@ -734,6 +816,12 @@
             
             .contact-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .theme-toggle {
+                position: absolute;
+                top: 20px;
+                right: 70px;
             }
         }
 
@@ -781,6 +869,9 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" aria-label="Toggle dark mode"></button>
+                    </li>
                 </ul>
                 <div class="hamburger">
                     <i class="fas fa-bars"></i>
@@ -1064,92 +1155,84 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Your Message</label>
-                        <textarea id="message" class="form-control" required></textarea>
+                        <textarea id="message" class="form-control"
+                                                <textarea id="message" class="form-control" required></textarea>
                     </div>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p class="copyright">© <script>document.write(new Date().getFullYear())</script> Eriny Hany. All rights reserved.</p>
+            <p class="copyright">&copy; 2023 Eriny Hany. All Rights Reserved.</p>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // Mobile navigation toggle
+        // Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-
+        
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            hamburger.innerHTML = navLinks.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-
-        // Close mobile menu when clicking a link
+        
+        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                hamburger.innerHTML = <i class="fas fa-bars"></i>
             });
         });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        
+        // Theme Toggle Functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme') || 
+                           (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the saved theme
+        if (savedTheme === 'dark') {
+            htmlElement.setAttribute('data-theme', 'dark');
+        } else {
+            htmlElement.removeAttribute('data-theme');
+        }
+        
+        // Theme toggle button click event
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.getAttribute('data-theme') === 'dark') {
+                htmlElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            // Only auto-change if user hasn't explicitly set a preference
+            if (!localStorage.getItem('theme')) {
+                if (e.matches) {
+                    htmlElement.setAttribute('data-theme', 'dark');
+                } else {
+                    htmlElement.removeAttribute('data-theme');
                 }
-            });
+            }
         });
-
+        
         // Form submission handling
         const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
-        }
-
-        // Add animation to elements when they come into view
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.skill-item, .project-card, .education-item');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        };
-
-        // Set initial state for animation
-        document.querySelectorAll('.skill-item, .project-card, .education-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
         });
-
-        // Run animation on scroll
-        window.addEventListener('scroll', animateOnScroll);
-        // Run once on page load
-        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
